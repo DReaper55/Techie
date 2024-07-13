@@ -12,7 +12,11 @@ public class TimeToWordConverter {
     };
 
     public static void main(String[] args) {
-        System.out.println("This is a Time-to-Word converter program. \nInput your time as Hour and Minute");
+
+    }
+
+    public static void run() {
+        System.out.println("This is a Time-to-Word converter program. \nInput your time as Hour and Minute\n");
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Input your Hour as a number: ");
