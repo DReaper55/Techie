@@ -3,9 +3,11 @@ package org.example.application_development.services;
 import org.example.application_development.entities.Student;
 import org.example.application_development.exceptions.ServiceException;
 import org.example.application_development.repository.StudentRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 

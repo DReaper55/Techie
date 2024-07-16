@@ -3,9 +3,11 @@ package org.example.application_development.services;
 import org.example.application_development.entities.Subject;
 import org.example.application_development.exceptions.ServiceException;
 import org.example.application_development.repository.SubjectRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SubjectServiceImpl implements SubjectService {
     private final SubjectRepository subjectRepository;
 

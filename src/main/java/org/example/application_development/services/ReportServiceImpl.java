@@ -4,21 +4,24 @@ import org.example.application_development.entities.Report;
 import org.example.application_development.entities.Score;
 import org.example.application_development.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ReportServiceImpl implements ReportService {
 
     @Autowired
     private StudentService studentService;
 
+    @Autowired
     private ScoreService scoreService;
 
     @Override
     public Report getReport(Long studentId) {
         Student student = studentService.getStudent(studentId);
-        List<Score> scores = scoreService.getAllSubjectScores(studentId);
+        List<Score> scores = scoreService.getAllStudentScores(studentId);
         double meanScore = scoreService.getStudentMeanScore(studentId);
         Integer modeScore = scoreService.getStudentModeScore(studentId);
         double medianScore = scoreService.getStudentMedianScore(studentId);

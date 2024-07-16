@@ -2,6 +2,7 @@ package org.example.application_development.entities;
 
 import lombok.Data;
 import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,14 +18,16 @@ public class Subject {
     private String name;
 
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private List<Score> scores;
 
     public static Subject toEntity(Map<String, Object> map) {
         Subject subject = new Subject();
-        subject.setId((Long) map.get("id"));
+//        subject.setId((Long) map.get("id"));
+        if (map.containsKey("id")) {
+            subject.setId(((Number) map.get("id")).longValue());
+        }
         subject.setName((String) map.get("name"));
-        List<Map<String, Object>> scoreMaps = (List<Map<String, Object>>) map.get("scores");
-         subject.setScores(Score.toEntities(scoreMaps));
         return subject;
     }
 
@@ -32,7 +35,6 @@ public class Subject {
         Map<String, Object> map = new HashMap<>();
         map.put("id", subject.getId());
         map.put("name", subject.getName());
-         map.put("scores", Score.toMaps(subject.getScores()));
         return map;
     }
 

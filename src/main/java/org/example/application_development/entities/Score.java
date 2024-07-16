@@ -2,6 +2,7 @@ package org.example.application_development.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,10 +20,12 @@ public class Score {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
+    @ToString.Exclude
     private Student student;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
+    @ToString.Exclude
     private Subject subject;
 
     public static Score toEntity(Map<String, Object> map) {

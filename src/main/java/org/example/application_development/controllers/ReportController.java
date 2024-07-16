@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/reports")
@@ -33,7 +32,7 @@ public class ReportController {
             response.put("message", reports.isEmpty()
                     ? "There are no saved reports"
                     : "Successfully retrieved reports");
-            response.put("data", reports.stream().map(Report::toMap).collect(Collectors.toList()));
+            response.put("data", reports.stream().map(Report::toMap).toList());
 
         } catch (Exception e){
             response.put("status", 500);
@@ -55,7 +54,7 @@ public class ReportController {
             response.put("status", 200);
             response.put("success", true);
             response.put("message", "Successfully retrieved report");
-            response.put("data", report);
+            response.put("data", Report.toMap(report));
 
         } catch (Exception e){
             response.put("status", 500);

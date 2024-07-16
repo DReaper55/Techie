@@ -1,7 +1,6 @@
 package org.example.application_development.controllers;
 
 import org.example.application_development.entities.Score;
-import org.example.application_development.entities.Student;
 import org.example.application_development.services.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/scores")
@@ -53,7 +51,7 @@ public class ScoreController {
             response.put("message", scores.isEmpty()
                     ? "There are no saved scores"
                     : "Successfully retrieved scores");
-            response.put("data", scores.stream().map(Score::toMap).collect(Collectors.toList()));
+            response.put("data", scores.stream().map(Score::toMap).toList());
 
         } catch (Exception e){
             response.put("status", 500);
@@ -75,7 +73,7 @@ public class ScoreController {
             response.put("status", 200);
             response.put("success", true);
             response.put("message", "Successfully retrieved scores");
-            response.put("data", scores.stream().map(Score::toMap).collect(Collectors.toList()));
+            response.put("data", scores.stream().map(Score::toMap).toList());
 
         } catch (Exception e){
             response.put("status", 500);

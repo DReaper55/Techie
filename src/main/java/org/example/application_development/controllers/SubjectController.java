@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/subjects")
@@ -52,7 +51,7 @@ public class SubjectController {
             response.put("message", subjects.isEmpty()
                     ? "There are no saved subjects"
                     : "Successfully retrieved subjects");
-            response.put("data", subjects.stream().map(Subject::toMap).collect(Collectors.toList()));
+            response.put("data", subjects.stream().map(Subject::toMap).toList());
 
         } catch (Exception e){
             response.put("status", 500);
